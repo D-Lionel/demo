@@ -1,12 +1,10 @@
 package pageobjects;
 
-import java.time.Duration;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class HomePageObject {
     
@@ -21,19 +19,30 @@ public class HomePageObject {
     @FindBy(xpath = "//a[@onclick='viewShoppingCartPage();']")
     public WebElement cartPayment;
 
-    public void initializing(){
-        System.setProperty("webdriver.chrome.driver", "src/main/java/com/shopizer/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-        driver.manage().window().maximize();
-        driver.get("http://192.168.102.40:8080/shop");
+    @FindBy(xpath = "(//a[contains(text(),'Bedroom')])[1]")
+    public WebElement bedroomCat;
+
+    @FindBy(xpath = "(//a[contains(text(),'Night Tables')])[1]")
+    public WebElement nightTablesCat;
+
+
+    public HomePageObject clickQuickAddToCart(WebDriver driver){
+        quickAddToCart.click();
+        return PageFactory.initElements(driver, HomePageObject.class);
     }
 
-    public void cartPayment() throws InterruptedException{
+    public void cartPayment1(WebDriver driver) throws InterruptedException{
         Actions action = new Actions(driver);
         action.moveToElement(cart).perform();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         cartPayment.click();
+    }
+
+    public void clickNightTables(WebDriver driver) throws InterruptedException{
+        Actions action = new Actions(driver);
+        action.moveToElement(bedroomCat).perform();
+        Thread.sleep(1000);
+        nightTablesCat.click();
     }
 
 }
