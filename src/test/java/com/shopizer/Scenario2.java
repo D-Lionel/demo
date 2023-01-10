@@ -6,6 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import pageobjects.CartPageObject;
 import pageobjects.HomePageObject;
+import pageobjects.PLPPageObject;
 
 import static org.junit.Assert.assertTrue;
 
@@ -18,6 +19,7 @@ public class Scenario2 {
 
     public HomePageObject HomePage;
     public CartPageObject CartPage;
+    public PLPPageObject PLPPage;
     public WebDriver driver;
     
     @Before
@@ -34,8 +36,10 @@ public class Scenario2 {
         //iQuickAddToCart
         HomePage = PageFactory.initElements(driver,HomePageObject.class);
         HomePage.clickNightTables(driver);
-        CartPage = PageFactory.initElements(driver,CartPageObject.class);
-        
+        PLPPage = PageFactory.initElements(driver,PLPPageObject.class);
+        //Faire une liste des miniature, titre, prix, promo, et comparer la longueur des ses listes
+        //assertTrue("titre", PLPPage.itemTitle.isDisplayed());
+        System.out.println(PLPPage.printList());
     }
 
     

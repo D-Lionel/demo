@@ -1,5 +1,7 @@
 package pageobjects;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -10,13 +12,20 @@ public class PLPPageObject {
     
     public WebDriver driver;
     
-    @FindBy(xpath = "(//a[@class='addToCart'])[1]")
-    public WebElement quickAddToCart;
+    @FindBy(xpath = "//h3[@itemprop='name']")
+    public List<WebElement> itemTitleList;
 
-   
-    public void cartPayment1(WebDriver driver) throws InterruptedException{
-        
+    public int printList(){
+        int itemsCount = 0;
+        for(WebElement e : itemTitleList) {
+            System.out.println(e.getText());
+            itemsCount++;
+          }
+          return itemsCount;
     }
+    
+    @FindBy(xpath = "//div[@class='thumbnail product-img']")
+    public List<WebElement> itemThumbnailList;
 
 
 }
