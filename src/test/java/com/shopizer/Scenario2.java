@@ -38,13 +38,28 @@ public class Scenario2 {
         HomePage.clickNightTables(driver);
         PLPPage = PageFactory.initElements(driver,PLPPageObject.class);
         //Faire une liste des miniature, titre, prix, promo, et comparer la longueur des ses listes
-        //assertTrue("titre", PLPPage.itemTitle.isDisplayed());
+        int verifier = 0;
         int itemTitleCount = 0;
-        int thumbnailCount = 0;
+        int itemThumbnailCount = 0;
+        int itemOldPriceCount = 0;
+        int itemNewPriceCount = 0;
+        int itemAddToCartCount = 0;
         itemTitleCount = PLPPage.printList(PLPPage.itemTitleList);
         System.out.println(itemTitleCount);
-        thumbnailCount = PLPPage.printList(PLPPage.itemThumbnailList);
-        System.out.println(thumbnailCount);
+        itemThumbnailCount = PLPPage.printList(PLPPage.itemThumbnailList);
+        System.out.println(itemThumbnailCount);
+        itemOldPriceCount = PLPPage.printList(PLPPage.itemOldPriceList);
+        System.out.println(itemOldPriceCount);
+        itemNewPriceCount = PLPPage.printList(PLPPage.itemNewPriceList);
+        System.out.println(itemNewPriceCount);
+        itemAddToCartCount = PLPPage.printList(PLPPage.addToCartList);
+        System.out.println(itemAddToCartCount);
+        verifier = itemThumbnailCount;
+        assertTrue("All elements are equally present", itemTitleCount == verifier && itemThumbnailCount == verifier && itemAddToCartCount == verifier && itemOldPriceCount == verifier && itemNewPriceCount == verifier );
+        //Click tables
+        HomePage.tablesCat.click();
+        HomePage.asianWoodFilter.click();
+        assertTrue("The items of the category Asian are displayed", PLPPage.checkTitle("Asian", PLPPage.itemTitleList));
     }
 
     

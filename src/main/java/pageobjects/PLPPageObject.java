@@ -17,7 +17,16 @@ public class PLPPageObject {
 
     @FindBy(xpath = "//div[@class='thumbnail product-img']")
     public List<WebElement> itemThumbnailList;
-    
+
+    @FindBy(xpath = "//del")
+    public List<WebElement> itemOldPriceList;
+
+    @FindBy(xpath = "//span[@itemprop='price']")
+    public List<WebElement> itemNewPriceList;
+
+    @FindBy(xpath = "//a[@class='addToCart']")
+    public List<WebElement> addToCartList;
+
     public int printList(List<WebElement> list){
         int itemsCount = 0;
         for(WebElement e : list) {
@@ -27,6 +36,15 @@ public class PLPPageObject {
           return itemsCount;
     }
     
+    public boolean checkTitle(String title, List<WebElement> list){
+        for(WebElement e : list) {
+            System.out.println(e.getText());
+            if(!e.getText().contains(title)){
+                return false;
+            }
+          }
+        return true;
+    }
     
 
 

@@ -1,5 +1,7 @@
 package pageobjects;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -25,11 +27,11 @@ public class HomePageObject {
     @FindBy(xpath = "(//a[contains(text(),'Night Tables')])[1]")
     public WebElement nightTablesCat;
 
+    @FindBy(xpath = "(//a[contains(text(),'Table')])[1]")
+    public WebElement tablesCat;
 
-    public HomePageObject clickQuickAddToCart(WebDriver driver){
-        quickAddToCart.click();
-        return PageFactory.initElements(driver, HomePageObject.class);
-    }
+    @FindBy(xpath = "//a[contains(text(),'Asian Wood')]")
+    public WebElement asianWoodFilter;
 
     public void cartPayment1(WebDriver driver) throws InterruptedException{
         Actions action = new Actions(driver);
