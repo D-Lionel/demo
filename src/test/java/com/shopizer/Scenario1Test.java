@@ -13,6 +13,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.Duration;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -52,6 +53,11 @@ public class Scenario1Test {
         driver.get("http://192.168.102.40:8099/shop");
     }
 
+    @After
+    public void quitIt(){
+        driver.quit();
+    }
+    
     @Test
     public void Test1() throws InterruptedException{
         //iQuickAddToCart
