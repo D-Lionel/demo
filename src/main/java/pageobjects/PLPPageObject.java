@@ -12,19 +12,19 @@ public class PLPPageObject {
     
     public WebDriver driver;
     
-    @FindBy(xpath = "//h3[@itemprop='name']")
+    @FindBy(xpath = "//div[@id='productsContainer']//h3[@itemprop='name']")
     public List<WebElement> itemTitleList;
 
-    @FindBy(xpath = "//div[@class='thumbnail product-img']")
+    @FindBy(xpath = "//div[@id='productsContainer']//div[@class='thumbnail product-img']")
     public List<WebElement> itemThumbnailList;
 
-    @FindBy(xpath = "//del")
+    @FindBy(xpath = "//div[@id='productsContainer']//del")
     public List<WebElement> itemOldPriceList;
 
-    @FindBy(xpath = "//span[@itemprop='price']")
+    @FindBy(xpath = "//div[@id='productsContainer']//span[@itemprop='price']")
     public List<WebElement> itemNewPriceList;
 
-    @FindBy(xpath = "//a[@class='addToCart']")
+    @FindBy(xpath = "//div[@id='productsContainer']//a[@class='addToCart']")
     public List<WebElement> addToCartList;
 
     public int printList(List<WebElement> list){
@@ -38,7 +38,6 @@ public class PLPPageObject {
     
     public boolean checkTitle(String title, List<WebElement> list){
         for(WebElement e : list) {
-            System.out.println(e.getText());
             if(!e.getText().contains(title)){
                 return false;
             }

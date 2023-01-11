@@ -10,7 +10,12 @@ import pageobjects.PLPPageObject;
 
 import static org.junit.Assert.assertTrue;
 
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.Duration;
+import java.util.Properties;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +26,7 @@ public class Scenario2 {
     public CartPageObject CartPage;
     public PLPPageObject PLPPage;
     public WebDriver driver;
+    String category;
     
     @Before
     public void initializing(){
@@ -55,11 +61,23 @@ public class Scenario2 {
         itemAddToCartCount = PLPPage.printList(PLPPage.addToCartList);
         System.out.println(itemAddToCartCount);
         verifier = itemThumbnailCount;
-        assertTrue("All elements are equally present", itemTitleCount == verifier && itemThumbnailCount == verifier && itemAddToCartCount == verifier && itemOldPriceCount == verifier && itemNewPriceCount == verifier );
+        assertTrue("All item elements are equally present", itemTitleCount == verifier && itemThumbnailCount == verifier && itemAddToCartCount == verifier && itemOldPriceCount == verifier && itemNewPriceCount == verifier );
         //Click tables
         HomePage.tablesCat.click();
+        //Click filters
         HomePage.asianWoodFilter.click();
-        assertTrue("The items of the category Asian are displayed", PLPPage.checkTitle("Asian", PLPPage.itemTitleList));
+        try(InputStream input = new FileInputStream("src/test/resources/config.properties")){
+            Properties prop = new Properties();
+            prop.load(input);            
+            category = prop.getProperty("filter.category.asian");
+            System.out.println("cat : "+category);
+            assertTrue("The items of the category "+category+" are displayed", PLPPage.checkTitle(category, PLPPage.itemTitleList));
+    
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        //Click product
+        PLPPage.itemTitleList.get(0).click();
     }
 
     
