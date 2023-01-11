@@ -49,7 +49,7 @@ public class Scenario1 {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         driver.manage().window().maximize();
-        driver.get("http://192.168.102.40:8199/shop");
+        driver.get("http://192.168.102.40:8099/shop");
     }
 
     @Test
