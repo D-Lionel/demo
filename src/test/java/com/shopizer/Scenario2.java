@@ -2,6 +2,8 @@ package com.shopizer;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.PageFactory;
 
 import pageobjects.CartPageObject;
@@ -11,7 +13,6 @@ import pageobjects.PLPPageObject;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
@@ -30,8 +31,29 @@ public class Scenario2 {
     
     @Before
     public void initializing(){
-        System.setProperty("webdriver.chrome.driver", "src/main/java/com/shopizer/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
+        
+        int myWebDriver = 2;
+
+        switch(myWebDriver){
+   
+            case 1: 
+                System.setProperty("webdriver.chrome.driver", "src/main/java/com/shopizer/drivers/chromedriver.exe");
+                driver = new ChromeDriver();
+                break;
+        
+            case 2:
+                FirefoxOptions options = new FirefoxOptions();
+                options.setBinary("C:/Program Files/Mozilla Firefox/firefox.exe");
+                System.setProperty("webdriver.gecko.driver", "src/main/java/com/shopizer/drivers/geckodriver.exe");
+                driver = new FirefoxDriver(options);
+                break;
+
+            default:
+                System.setProperty("webdriver.chrome.driver", "src/main/java/com/shopizer/drivers/chromedriver.exe");
+                driver = new ChromeDriver();
+                break;
+        }
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         driver.manage().window().maximize();
         driver.get("http://192.168.102.40:8080/shop");
@@ -63,8 +85,10 @@ public class Scenario2 {
         verifier = itemThumbnailCount;
         assertTrue("All item elements are equally present", itemTitleCount == verifier && itemThumbnailCount == verifier && itemAddToCartCount == verifier && itemOldPriceCount == verifier && itemNewPriceCount == verifier );
         //Click tables
+        Thread.sleep(1000);
         HomePage.tablesCat.click();
         //Click filters
+        Thread.sleep(1000);
         HomePage.asianWoodFilter.click();
         try(InputStream input = new FileInputStream("src/test/resources/config.properties")){
             Properties prop = new Properties();
@@ -77,6 +101,7 @@ public class Scenario2 {
             ex.printStackTrace();
         }
         //Click product
+        Thread.sleep(1000);
         PLPPage.itemTitleList.get(0).click();
     }
 
