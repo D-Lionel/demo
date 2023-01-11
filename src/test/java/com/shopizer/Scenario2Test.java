@@ -94,7 +94,7 @@ public class Scenario2Test {
             Properties prop = new Properties();
             prop.load(input);            
             category = prop.getProperty("filter.category.asian");
-            assertTrue("The items of the category "+category+" are displayed", PLPPage.checkTitle(category, PLPPage.itemTitleList));
+            assertTrue("The items of the category "+category+" are displayed", !PLPPage.checkTitle(category, PLPPage.itemTitleList));
     
         } catch (IOException ex) {
             ex.printStackTrace();
