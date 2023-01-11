@@ -2,6 +2,8 @@ package com.shopizer;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.PageFactory;
 
 import pageobjects.CartPageObject;
@@ -22,11 +24,32 @@ public class Scenario1 {
     
     @Before
     public void initializing(){
-        System.setProperty("webdriver.chrome.driver", "src/main/java/com/shopizer/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
+        
+        int myWebDriver = 1;
+
+        switch(myWebDriver){
+   
+            case 1: 
+                System.setProperty("webdriver.chrome.driver", "src/main/java/com/shopizer/drivers/chromedriver.exe");
+                driver = new ChromeDriver();
+                break;
+        
+            case 2:
+                FirefoxOptions options = new FirefoxOptions();
+                options.setBinary("C:/Program Files/Mozilla Firefox/firefox.exe");
+                System.setProperty("webdriver.gecko.driver", "src/main/java/com/shopizer/drivers/geckodriver.exe");
+                driver = new FirefoxDriver(options);
+                break;
+
+            default:
+                System.setProperty("webdriver.chrome.driver", "src/main/java/com/shopizer/drivers/chromedriver.exe");
+                driver = new ChromeDriver();
+                break;
+        }
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         driver.manage().window().maximize();
-        driver.get("http://192.168.102.40:8080/shop");
+        driver.get("http://192.168.102.40:8199/shop");
     }
 
     @Test
