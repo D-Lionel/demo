@@ -32,7 +32,7 @@ public class Scenario2 {
     @Before
     public void initializing(){
         
-        int myWebDriver = 2;
+        int myWebDriver = 1;
 
         switch(myWebDriver){
    
@@ -56,7 +56,7 @@ public class Scenario2 {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         driver.manage().window().maximize();
-        driver.get("http://192.168.102.40:8080/shop");
+        driver.get("http://192.168.102.40:8199/shop");
     }
 
     @Test
@@ -94,7 +94,6 @@ public class Scenario2 {
             Properties prop = new Properties();
             prop.load(input);            
             category = prop.getProperty("filter.category.asian");
-            System.out.println("cat : "+category);
             assertTrue("The items of the category "+category+" are displayed", PLPPage.checkTitle(category, PLPPage.itemTitleList));
     
         } catch (IOException ex) {
