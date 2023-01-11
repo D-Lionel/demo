@@ -15,17 +15,19 @@ public class PLPPageObject {
     @FindBy(xpath = "//h3[@itemprop='name']")
     public List<WebElement> itemTitleList;
 
-    public int printList(){
+    @FindBy(xpath = "//div[@class='thumbnail product-img']")
+    public List<WebElement> itemThumbnailList;
+    
+    public int printList(List<WebElement> list){
         int itemsCount = 0;
-        for(WebElement e : itemTitleList) {
+        for(WebElement e : list) {
             System.out.println(e.getText());
             itemsCount++;
           }
           return itemsCount;
     }
     
-    @FindBy(xpath = "//div[@class='thumbnail product-img']")
-    public List<WebElement> itemThumbnailList;
+    
 
 
 }

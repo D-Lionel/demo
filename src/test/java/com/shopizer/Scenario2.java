@@ -39,7 +39,12 @@ public class Scenario2 {
         PLPPage = PageFactory.initElements(driver,PLPPageObject.class);
         //Faire une liste des miniature, titre, prix, promo, et comparer la longueur des ses listes
         //assertTrue("titre", PLPPage.itemTitle.isDisplayed());
-        System.out.println(PLPPage.printList());
+        int itemTitleCount = 0;
+        int thumbnailCount = 0;
+        itemTitleCount = PLPPage.printList(PLPPage.itemTitleList);
+        System.out.println(itemTitleCount);
+        thumbnailCount = PLPPage.printList(PLPPage.itemThumbnailList);
+        System.out.println(thumbnailCount);
     }
 
     
