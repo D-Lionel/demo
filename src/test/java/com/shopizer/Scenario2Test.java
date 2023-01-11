@@ -21,7 +21,7 @@ import java.util.Properties;
 import org.junit.Before;
 import org.junit.Test;
 
-public class Scenario2 {
+public class Scenario2Test {
 
     public HomePageObject HomePage;
     public CartPageObject CartPage;

@@ -16,7 +16,7 @@ import java.time.Duration;
 import org.junit.Before;
 import org.junit.Test;
 
-public class Scenario1 {
+public class Scenario1Test {
 
     public HomePageObject HomePage;
     public CartPageObject CartPage;
